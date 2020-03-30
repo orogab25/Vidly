@@ -175,14 +175,43 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202003300949252_InitialModel.cs" />
+    <Compile Include="Migrations\202003300949252_InitialModel.Designer.cs">
+      <DependentUpon>202003300949252_InitialModel.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202003301010023_AddIsSubscribed.cs" />
+    <Compile Include="Migrations\202003301010023_AddIsSubscribed.Designer.cs">
+      <DependentUpon>202003301010023_AddIsSubscribed.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202003301017385_AddMembershipType.cs" />
+    <Compile Include="Migrations\202003301017385_AddMembershipType.Designer.cs">
+      <DependentUpon>202003301017385_AddMembershipType.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202003301030146_PopulateMembershipTypes.cs" />
+    <Compile Include="Migrations\202003301030146_PopulateMembershipTypes.Designer.cs">
+      <DependentUpon>202003301030146_PopulateMembershipTypes.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202003301056044_ApplyAnnotationsToCustomerName.cs" />
+    <Compile Include="Migrations\202003301056044_ApplyAnnotationsToCustomerName.Designer.cs">
+      <DependentUpon>202003301056044_ApplyAnnotationsToCustomerName.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202003301801054_AddMembershipTypeName.cs" />
+    <Compile Include="Migrations\202003301801054_AddMembershipTypeName.Designer.cs">
+      <DependentUpon>202003301801054_AddMembershipTypeName.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202003301820590_UpdateMembershipTypes.cs" />
+    <Compile Include="Migrations\202003301820590_UpdateMembershipTypes.Designer.cs">
+      <DependentUpon>202003301820590_UpdateMembershipTypes.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\Customer.cs" />
     <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="Models\ManageViewModels.cs" />
+    <Compile Include="Models\MembershipType.cs" />
     <Compile Include="Models\Movie.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Startup.cs" />
-    <Compile Include="ViewModels\CustomersViewModel.cs" />
     <Compile Include="ViewModels\MoviesViewModel.cs" />
     <Compile Include="ViewModels\RandomMovieViewModel.cs" />
   </ItemGroup>
@@ -263,6 +292,29 @@
     <None Include="packages.config" />
     <Content Include="Scripts\jquery-3.4.1.slim.min.map" />
     <Content Include="Scripts\jquery-3.4.1.min.map" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Migrations\202003300949252_InitialModel.resx">
+      <DependentUpon>202003300949252_InitialModel.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202003301010023_AddIsSubscribed.resx">
+      <DependentUpon>202003301010023_AddIsSubscribed.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202003301017385_AddMembershipType.resx">
+      <DependentUpon>202003301017385_AddMembershipType.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202003301030146_PopulateMembershipTypes.resx">
+      <DependentUpon>202003301030146_PopulateMembershipTypes.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202003301056044_ApplyAnnotationsToCustomerName.resx">
+      <DependentUpon>202003301056044_ApplyAnnotationsToCustomerName.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202003301801054_AddMembershipTypeName.resx">
+      <DependentUpon>202003301801054_AddMembershipTypeName.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202003301820590_UpdateMembershipTypes.resx">
+      <DependentUpon>202003301820590_UpdateMembershipTypes.cs</DependentUpon>
+    </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
