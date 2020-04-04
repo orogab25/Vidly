@@ -26,9 +26,7 @@ namespace Vidly.Controllers
         // GET: Customers
         public ActionResult Index()
         {
-            List<Customer> customers = _context.Customers.Include(c=>c.MembershipType).ToList();
-
-            return View(customers);
+            return View();
         }
 
         // GET: Customers/Details/id
@@ -88,10 +86,12 @@ namespace Vidly.Controllers
                 return View("CustomerForm",customerFormViewModel);
             }
 
+            //New customer
             if (customer.Id == 0)
             {
                 _context.Customers.Add(customer);
             }
+            //Existing customer
             else
             {
                 Customer customerInDb = _context.Customers.Single(c => c.Id == customer.Id);

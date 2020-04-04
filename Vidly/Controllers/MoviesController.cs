@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Data.Entity;
-using System.Data.Entity.Validation;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
@@ -23,13 +22,14 @@ namespace Vidly.Controllers
         {
             _context.Dispose();
         }
+
+        // GET: Movies
         public ActionResult Index()
         {
-            List<Movie> movies = _context.Movies.Include(m => m.Genre).ToList();
-
-            return View(movies);
+            return View();
         }
 
+        // GET: Movies/Details/id
         public ActionResult Details(int id)
         {
             Movie movie = _context.Movies.Include(m => m.Genre).SingleOrDefault(m => m.Id == id); //used lambda expression
@@ -42,7 +42,7 @@ namespace Vidly.Controllers
             return View(movie);
         }
 
-        //GET: movies/random
+        // GET: movies/random
         public ActionResult Random()
         {
             var movie = new Movie() {Name="Shrek"}; //used object initializer
@@ -62,7 +62,7 @@ namespace Vidly.Controllers
             return View(viewModel);
         }
 
-        //GET: movies/released/year/month (Movies by release date)
+        // GET: movies/released/year/month (Movies by release date)
         [Route("movies/released/{year}/{month:regex(\\d{2}):range(1,12)}")]
         public ActionResult ByReleaseDate(int year, int month)
         {
