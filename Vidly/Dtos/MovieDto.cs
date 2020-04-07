@@ -20,11 +20,8 @@ namespace Vidly.Dtos
 
         public GenreDto Genre { get; set; }
 
-        [Display(Name = "Release Date")]
         [Required]
         public DateTime ReleaseDate { get; set; }
-
-        public DateTime DateAdded { get; set; }
 
         [Required]
         [Range(1, 20)]

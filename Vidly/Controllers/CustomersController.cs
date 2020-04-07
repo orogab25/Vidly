@@ -29,19 +29,6 @@ namespace Vidly.Controllers
             return View();
         }
 
-        // GET: Customers/Details/id
-        public ActionResult Details(int id)
-        {
-            Customer customer = _context.Customers.Include(c=>c.MembershipType).SingleOrDefault(c => c.Id == id); //used lambda expression
-
-            if (customer == null)
-            {
-                return HttpNotFound();
-            }
-
-            return View(customer);
-        }
-
         public ActionResult New()
         {
             CustomerFormViewModel newCustomerViewModel = new CustomerFormViewModel()

@@ -51,6 +51,7 @@ namespace Vidly.Controllers.Api
             }
 
             Movie Movie = Mapper.Map<MovieDto, Movie>(MovieDto);
+            Movie.DateAdded = DateTime.Now;
 
             _context.Movies.Add(Movie);
             _context.SaveChanges();
@@ -75,6 +76,8 @@ namespace Vidly.Controllers.Api
             {
                 throw new HttpResponseException(HttpStatusCode.NotFound);
             }
+
+            MovieDto.Genre = null;
 
             Mapper.Map<MovieDto, Movie>(MovieDto, MovieInDb);
 

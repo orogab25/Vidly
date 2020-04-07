@@ -26,49 +26,15 @@ namespace Vidly.Controllers
         // GET: Movies
         public ActionResult Index()
         {
-            return View();
-        }
-
-        // GET: Movies/Details/id
-        public ActionResult Details(int id)
-        {
-            Movie movie = _context.Movies.Include(m => m.Genre).SingleOrDefault(m => m.Id == id); //used lambda expression
-
-            if (movie == null)
+            if (User.IsInRole(RoleName.CanManageMovies))
             {
-                return HttpNotFound();
+                return View("List");
             }
 
-            return View(movie);
+            return View("ReadOnlyList");
         }
 
-        // GET: movies/random
-        public ActionResult Random()
-        {
-            var movie = new Movie() {Name="Shrek"}; //used object initializer
-
-            var customers = new List<Customer>()
-            {
-                new Customer { Name="Customer 1" } ,
-                new Customer { Name="Customer 2" }
-            };
-
-            var viewModel = new RandomMovieViewModel()
-            {
-                Movie = movie,
-                Customers = customers
-            };
-
-            return View(viewModel);
-        }
-
-        // GET: movies/released/year/month (Movies by release date)
-        [Route("movies/released/{year}/{month:regex(\\d{2}):range(1,12)}")]
-        public ActionResult ByReleaseDate(int year, int month)
-        {
-            return Content(year+"/"+month);
-        }
-
+        [Authorize(Roles = RoleName.CanManageMovies)]
         public ActionResult New()
         {
             List<Genre> genres = _context.Genres.ToList();
