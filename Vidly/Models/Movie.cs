@@ -30,5 +30,7 @@ namespace Vidly.Models
         [Required]
         [Range(1, 20)]
         public int InStock { get; set; }
+
+        public int Available { get; set; }
     }
 }

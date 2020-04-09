@@ -9,23 +9,12 @@
     NEW MOVIE
 </a>
 
-<!--
-<div id="movies" style="width: 100%">
-</div>
--->
-
 <table id="movies" class="table table-bordered table-hover">
     <thead>
         <tr>
-            <th>
-                Movie
-            </th>
-            <th>
-                Genre
-            </th>
-            <th>
-                Delete
-            </th>
+            <th>Movie</th>
+            <th>Genre</th>
+            <th>Delete</th>
         </tr>
     </thead>
     <tbody>
@@ -35,141 +24,10 @@
 @section scripts
 {
     <script>
-
-        /*
-        var movies = new DevExpress.data.DataSource({
-            //Load from database
-            load: function (loadOptions) {
-                var d = new $.Deferred();
-                var params = {};
-                //Getting filter options
-                if (loadOptions.filter) {
-                    params.filter = JSON.stringify(loadOptions.filter);
-                }
-                //Getting sort options
-                if (loadOptions.sort) {
-                    params.sort = JSON.stringify(loadOptions.sort);
-                }
-                //If the select expression is specified
-                if (loadOptions.select) {
-                    params.select = JSON.stringify(loadOptions.select);
-                }
-                //Getting group options
-                if (loadOptions.group) {
-                    params.group = JSON.stringify(loadOptions.group);
-                }
-                //skip and take are used for paging
-                params.skip = loadOptions.skip; //A number of records that should be skipped
-                params.take = loadOptions.take; //A number of records that should be taken
-                $.getJSON('/api/movies/', params).done(function (data) {
-                    console.log(params);
-                    d.resolve(data);
-                    //If your data service allows returning total count in a single request, use the following code
-                    //d.resolve(data.items, { totalCount: data.count }); //where data.items array of items, data.count a number of items without applying filter
-                    //In this case, you will not need to implement the totalCount method as shown below
-                });
-                return d.promise();
-            },
-            totalCount: function (loadOptions) { //Required if your data service does not allow return this value in a single request.
-                var d = new $.Deferred();
-                var params = {};
-                //Getting filter options
-                if (loadOptions.filter) {
-                    params.filter = JSON.stringify(loadOptions.filter);
-                }
-                params.needCount = true; //You can use this parameter on the server side to ensure that a number of records is required
-                $.getJSON('/api/movies/', params).done(function (data) {
-                    console.log(params);
-                    d.resolve(data); //data is a number of records
-                });
-                return d.promise();
-            },
-            //Insert to database
-            insert: function (values) {
-                return $.ajax({
-                    url: "/api/movies/",
-                    method: "POST",
-                    data: values
-                })
-            },
-            //Remove from database
-            remove: function (key) {
-                return $.ajax({
-                    url: "/api/movies/" + key.id,
-                    method: "DELETE",
-                })
-            },
-            //Update database
-            update: function (key, values) {
-                $.extend(key, values);
-                return $.ajax({
-                    url: "/api/movies/" + key.id,
-                    method: "PUT",
-                    data: key
-                })
-            }
-        });
-
-        $(document).ready(function () {
-            $("#movies").dxDataGrid({
-                dataSource: movies,
-                //Enable or disable editing
-                editing: {
-                    allowUpdating: true,
-                    allowAdding: true,
-                    allowDeleting: true,
-                    mode: 'form' // 'batch' | 'cell' | 'form' | 'popup'
-                },
-                //Columns of the Movie table
-                columns: [
-                    {
-                        dataField: "name",
-                        caption: "Name",
-                        cellTemplate: function (element, info) {
-                            element.append("<div><a href='/movies/edit/" + info.data.id + "'>" + info.text + "</a></div>")
-                                .css("color", "blue");
-                        }
-                    },
-                    {
-                        dataField: "releaseDate",
-                        caption: "Release Date",
-                        dataType: "date"
-                    },
-                    {
-                        dataField: "genreId",
-                        caption: "Genre ID",
-                        dataType:"number"
-                    },
-                    {
-                        dataField: "genre.name",
-                        caption: "Genre",
-                        allowEditing: false
-                    },
-                    {
-                        dataField: "inStock",
-                        caption: "Number in Stock",
-                        dataType: "number"
-                    }
-                ],
-                //Extra
-                filterRow: {
-                    visible: true
-                },
-                sorting: {
-                    mode:"multiple"
-                },
-                paging: {
-                    enabled: true,
-                    pageSize: 2
-                }
-            });
-        });
-        */
-        
         $(document).ready(function () {
             var table = $("#movies").DataTable({
                 ajax: {
-                    url: "/api/movies/",
+                    url: "/api/movies",
                     dataSrc: ""
                 },
                 columns: [
@@ -187,14 +45,15 @@
                         render: function (data) {
                             return "<button class='btn-link js-delete' data-movie-id=" + data + ">Delete</button>";
                         }
-                    },
+                    }
                 ]
             });
+
 
             $("#movies").on("click", ".js-delete", function () {
                 var button = $(this);
 
-                bootbox.confirm("Are you sure you want to delete this customer?", function (result) {
+                bootbox.confirm("Are you sure you want to delete this movie?", function (result) {
                     if (result) {
                         $.ajax({
                             url: "/api/movies/" + button.attr("data-movie-id"),
@@ -207,6 +66,5 @@
                 });
             });
         });
-        
     </script>
 }
